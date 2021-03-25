@@ -1,0 +1,17 @@
+{
+    "folders": [
+		{
+			"path": "api"
+		},
+		{
+			"path": "frontend"
+		},
+		{
+			"path": "nginx"
+		},
+		{
+			"path": "."
+		}
+	],
+    "settings": {}
+}
