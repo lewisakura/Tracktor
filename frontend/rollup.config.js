@@ -22,7 +22,7 @@ function serve() {
 			if (server) return;
 			server = require("child_process").spawn(
 				"npm",
-				["run", "start", "--", "--dev"],
+				["run", "start", "--", "--dev", "--port", "5001"],
 				{
 					stdio: ["ignore", "inherit", "inherit"],
 					shell: true,
@@ -76,7 +76,7 @@ export default {
 				[
 					"sass",
 					{
-						includePaths: ["./theme", "./node_modules"],
+						includePaths: ["./src/theme", "./node_modules"],
 					},
 				],
 			],
