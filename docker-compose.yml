@@ -1,50 +1,50 @@
 version: 3.0
 
 services:
-	api:
-		build:
-			context: api
-			dockerfile: api/Dockerfile
-		image: api
-		restart: unless-stopped
-		links:
-		    - postgres
-		depends_on:
-			- postgres
-		environment:
-			DB: postgresql://tracktor:tracktor@postgres:5432/tracktor
+    api:
+        build:
+            context: api
+            dockerfile: api/Dockerfile
+        image: api
+        restart: unless-stopped
+        links:
+            - postgres
+        depends_on:
+            - postgres
+        environment:
+            DB: postgresql://tracktor:tracktor@postgres:5432/tracktor
 
-	frontend:
-		build:
-			context: frontend
-			dockerfile: frontend/Dockerfile
-		image: frontend
-		restart: unless-stopped
-		depends_on:
-			- api
+    frontend:
+        build:
+            context: frontend
+            dockerfile: frontend/Dockerfile
+        image: frontend
+        restart: unless-stopped
+        depends_on:
+            - api
 
-	nginx:
-		build:
-			context: nginx
-			dockerfile: nginx/Dockerfile
-		image: tracktor-nginx
-		restart: unless-stopped
-		links:
-			- api
-			- frontend
-		depends_on:
-			- api
-			- frontend
+    nginx:
+        build:
+            context: nginx
+            dockerfile: nginx/Dockerfile
+        image: tracktor-nginx
+        restart: unless-stopped
+        links:
+            - api
+            - frontend
+        depends_on:
+            - api
+            - frontend
 
-	postgres:
-		image: postgres:13-alpine
-		restart: unless-stopped
-		environment:
-			POSTGRES_USER: tracktor
-			POSTGRES_DB: tracktor
-			POSTGRES_PASSWORD: tracktor
-		volumes:
-			- postgres:/var/lib/postgresql/data
+    postgres:
+        image: postgres:13-alpine
+        restart: unless-stopped
+        environment:
+            POSTGRES_USER: tracktor
+            POSTGRES_DB: tracktor
+            POSTGRES_PASSWORD: tracktor
+        volumes:
+            - postgres:/var/lib/postgresql/data
 
 volumes:
-	postgres:
+    postgres:
