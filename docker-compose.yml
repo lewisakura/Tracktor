@@ -8,7 +8,7 @@ services:
 		image: api
 		restart: unless-stopped
 		links:
-			- postgres
+		    - postgres
 		depends_on:
 			- postgres
 		environment:
